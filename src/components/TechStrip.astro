@@ -1,0 +1,12 @@
+---
+import { techStrip } from '../data/site';
+---
+
+<section aria-label="Technologies" class="border-y border-line bg-surface/60">
+  <div class="mx-auto max-w-6xl px-5 py-6 sm:px-8">
+    <p class="text-center text-xs uppercase tracking-widest text-muted/70">Tech I work with</p>
+    <ul class="mt-4 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 text-sm font-medium text-muted">
+      {techStrip.map((tech) => <li>{tech}</li>)}
+    </ul>
+  </div>
+</section>

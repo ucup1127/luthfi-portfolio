@@ -1,0 +1,82 @@
+---
+import { profile } from '../data/site';
+
+const photos = import.meta.glob('/src/assets/photo.{jpg,jpeg,png,webp}', {
+  eager: true, query: '?url', import: 'default',
+});
+const photo = Object.values(photos)[0] as string | undefined;
+---
+
+<section id="top" class="relative overflow-hidden">
+  <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+    <div class="dot-grid absolute inset-0 opacity-[0.15]"></div>
+    <div class="absolute -right-40 top-0 h-[500px] w-[500px] rounded-full bg-accent/10 blur-3xl"></div>
+  </div>
+
+  <div class="mx-auto grid max-w-6xl gap-10 px-5 pb-16 pt-12 sm:px-8 md:grid-cols-2 md:items-center md:gap-6 md:pb-24 md:pt-20">
+    
+    <!-- TEKS -->
+    <div class="order-2 md:order-1">
+      <p class="reveal inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1 text-xs text-muted">
+        <span class="h-1.5 w-1.5 rounded-full bg-accent"></span>
+        Open to remote junior roles
+      </p>
+
+      <h1 class="reveal reveal-delay-1 mt-5 text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-6xl">
+        Hi, I'm {profile.name.split(' ')[0]}.<br />
+        <span class="text-accent">Full-stack</span> developer.
+      </h1>
+
+      <p class="reveal reveal-delay-2 mt-5 max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+        I design, build, and deploy end-to-end systems that schools and teams use every day — with Next.js, TypeScript, Laravel, and PostgreSQL.
+      </p>
+
+      <div class="reveal reveal-delay-3 mt-8 flex flex-wrap items-center gap-3">
+        <a href={profile.cv} download
+          class="rounded-full bg-accent px-6 py-3 text-sm font-medium text-bg transition-colors hover:bg-accent-strong">
+          Download CV
+        </a>
+        <a href="#projects"
+          class="rounded-full border border-line px-6 py-3 text-sm transition-colors hover:border-muted">
+          View work
+        </a>
+
+        <div class="flex items-center gap-2">
+          <a href={profile.github} target="_blank" rel="noopener noreferrer" aria-label="GitHub"
+            class="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.2 4.4 18.2 4.7 18.2 4.7c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z"/></svg>
+          </a>
+          <a href={`mailto:${profile.email}`} aria-label="Email"
+            class="grid h-10 w-10 place-items-center rounded-full border border-line text-muted transition-colors hover:border-accent hover:text-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOTO -->
+    <div class="reveal reveal-delay-2 order-1 mx-auto w-full max-w-sm md:order-2 md:max-w-md">
+      <div class="relative aspect-[4/5]">
+        <div class="absolute inset-0 -z-10 translate-x-3 translate-y-3 rounded-[2rem] border border-accent/40" aria-hidden="true"></div>
+        <div class="absolute -inset-2 -z-20 rounded-[2.2rem] bg-accent/10 blur-2xl" aria-hidden="true"></div>
+
+        <div class="relative h-full overflow-hidden rounded-[2rem] bg-surface ring-1 ring-line">
+          {photo ? (
+            <img src={photo} alt={`Portrait of ${profile.name}`} width="800" height="1000"
+  class="h-full w-full object-cover object-top scale-105 transition-transform duration-700 hover:scale-110" fetchpriority="high" />
+          ) : (
+            <div class="flex h-full w-full flex-col items-center justify-center gap-2">
+              <span class="text-7xl font-semibold text-accent">LY</span>
+              <span class="text-xs text-muted">Photo coming soon</span>
+            </div>
+          )}
+        </div>
+
+        <div class="absolute -bottom-3 -left-3 rounded-xl border border-line bg-bg px-3 py-2 text-xs shadow-lg sm:-left-5 sm:px-4 sm:py-3">
+          <p class="text-muted">Currently building</p>
+          <p class="font-medium">MTSMUHBMS</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,31 @@
+---
+import { profile } from '../data/site';
+---
+
+<section id="contact" class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-5 py-24 sm:px-8 sm:py-32">
+    <div class="reveal">
+      <p class="text-sm text-accent">Contact</p>
+      <h2 class="mt-2 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+        Hiring for a remote junior developer? <span class="text-accent">Let's talk.</span>
+      </h2>
+
+      <a
+        href={`mailto:${profile.email}`}
+        class="mt-10 inline-block break-all text-2xl font-semibold text-accent underline decoration-accent/40 underline-offset-8 transition-colors hover:decoration-accent sm:text-4xl"
+      >
+        {profile.email}
+      </a>
+
+      <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-2 text-sm text-muted">
+        <li>
+          <a href={profile.github} class="underline underline-offset-4 hover:text-ink" target="_blank" rel="noopener noreferrer">GitHub</a>
+        </li>
+        <li>
+          <a href={profile.cv} class="underline underline-offset-4 hover:text-ink" download>Download CV</a>
+        </li>
+        <li>{profile.location}</li>
+      </ul>
+    </div>
+  </div>
+</section>

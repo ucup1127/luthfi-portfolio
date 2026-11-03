@@ -1,0 +1,60 @@
+---
+import { profile, nav } from '../data/site';
+---
+
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-bg">
+  Skip to content
+</a>
+
+<header class="sticky top-0 z-40 border-b border-line/60 bg-bg/80 backdrop-blur-md">
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
+    <a href="#top" class="text-xl font-semibold tracking-tight">{profile.name}</a>
+
+    <!-- Desktop Nav -->
+    <nav aria-label="Primary" class="hidden items-center gap-7 text-sm text-muted md:flex">
+      {nav.map((item) => (
+        <a href={item.href} class="transition-colors hover:text-ink">{item.label}</a>
+      ))}
+      <a href="#contact" class="rounded-full bg-accent px-4 py-1.5 text-xs font-medium text-bg transition-colors hover:bg-accent-strong">
+        Hire me
+      </a>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <details id="mobile-menu" class="relative md:hidden group">
+      <summary class="cursor-pointer list-none rounded-full p-2 border border-line text-ink hover:text-accent hover:border-accent transition-colors">
+        <!-- Icon Burger -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"></line>
+          <line x1="4" x2="20" y1="6" y2="6"></line>
+          <line x1="4" x2="20" y1="18" y2="18"></line>
+        </svg>
+      </summary>
+      
+      <nav id="mobile-nav" aria-label="Mobile" class="absolute right-0 mt-3 flex w-52 flex-col rounded-2xl border border-line bg-surface p-2 text-sm shadow-2xl">
+        {nav.map((item) => (
+          <a href={item.href} class="rounded-xl px-4 py-3 text-muted hover:bg-line hover:text-ink transition-colors">{item.label}</a>
+        ))}
+        <div class="p-2 mt-1 border-t border-line">
+          <a href="#contact" class="flex justify-center rounded-xl bg-accent px-4 py-2.5 text-xs font-medium text-bg hover:bg-accent-strong transition-colors">Hire me</a>
+        </div>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  const menu = document.getElementById('mobile-menu') as HTMLDetailsElement | null;
+  
+  // Tutup menu saat link diklik
+  menu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => { menu.open = false; });
+  });
+
+  // Tutup menu kalau klik di luar area
+  document.addEventListener('click', (e) => {
+    if (menu && menu.open && !menu.contains(e.target as Node)) {
+      menu.open = false;
+    }
+  });
+</script>

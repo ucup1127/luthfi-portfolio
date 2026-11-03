@@ -1,0 +1,32 @@
+---
+import { skills } from '../data/site';
+---
+
+<section id="skills" class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+    <div class="reveal">
+      <p class="text-sm text-accent">Toolbox</p>
+      <h2 class="mt-2 text-4xl font-semibold tracking-tight sm:text-5xl">Skills</h2>
+    </div>
+
+    <!-- Satu container besar dengan tag yang mengalir -->
+    <div class="reveal mt-12 rounded-3xl border border-line bg-surface/40 p-6 sm:p-10">
+      <div class="space-y-8">
+        {skills.map((row) => (
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:gap-6">
+            <p class="w-20 shrink-0 text-xs font-medium uppercase tracking-wider text-accent">
+              {row.group}
+            </p>
+            <ul class="flex flex-wrap gap-2">
+              {row.items.map((item) => (
+                <li class="rounded-full border border-line bg-bg px-3 py-1.5 text-sm text-ink transition-colors hover:border-accent/50 hover:text-accent">
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

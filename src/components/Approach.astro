@@ -1,0 +1,28 @@
+---
+import { approach } from '../data/site';
+---
+
+<section id="approach" class="border-t border-line bg-surface/30">
+  <div class="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-28">
+    
+    <div class="reveal">
+      <p class="text-sm text-accent">How I work</p>
+      <h2 class="mt-2 max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl">
+        Four things I care about when I build.
+      </h2>
+    </div>
+
+    <div class="mt-12 grid gap-4 sm:grid-cols-2">
+      {approach.map((item, i) => (
+        <article class={`reveal reveal-delay-${(i % 2) + 1} rounded-2xl border border-line bg-bg p-6 sm:p-7`}>
+          <div class="flex items-center justify-between">
+            <p class="text-xs font-medium uppercase tracking-wider text-accent">{item.tag}</p>
+            <span class="text-xs text-muted">0{i + 1}</span>
+          </div>
+          <h3 class="mt-4 text-xl font-semibold">{item.title}</h3>
+          <p class="mt-3 text-sm leading-relaxed text-muted sm:text-base">{item.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
